@@ -19,6 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
   return <Profile />;
 }

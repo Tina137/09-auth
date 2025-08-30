@@ -2,6 +2,7 @@
 
 import css from "./page.module.css";
 
+import Image from "next/image";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import { EditProps, editProfile } from "@/lib/api/clientApi";
@@ -12,6 +13,7 @@ export default function EditPage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const email = useAuthStore((state) => state.user?.email);
+  const src = useAuthStore((state) => state.user?.avatar);
   const handleSubmit = async (formData: FormData) => {
     try {
       if (email) {
@@ -21,7 +23,7 @@ export default function EditPage() {
         };
         const res = await editProfile(formValues);
         if (res) {
-          router.push("/profile");
+          router.back();
         } else {
           setError("Invalid email or password");
         }
@@ -40,18 +42,25 @@ export default function EditPage() {
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
-        {/* <img
-            src="avatar"
+        {src && (
+          <Image
+            src={src}
             alt="User Avatar"
             width={120}
             height={120}
             className={css.avatar}
-          /> */}
+          />
+        )}
 
         <form action={handleSubmit} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
-            <input id="username" type="text" className={css.input} />
+            <input
+              id="username"
+              name="username"
+              type="text"
+              className={css.input}
+            />
           </div>
 
           <p>Email: {email}</p>
