@@ -14,14 +14,17 @@ export default function EditPage() {
   const email = useAuthStore((state) => state.user?.email);
   const handleSubmit = async (formData: FormData) => {
     try {
-      const formValues: EditProps = {
-        username: formData.get("username") as string,
-      };
-      const res = await editProfile(formValues);
-      if (res) {
-        router.push("/profile");
-      } else {
-        setError("Invalid email or password");
+      if (email) {
+        const formValues: EditProps = {
+          email: email,
+          username: formData.get("username") as string,
+        };
+        const res = await editProfile(formValues);
+        if (res) {
+          router.push("/profile");
+        } else {
+          setError("Invalid email or password");
+        }
       }
     } catch (error) {
       setError(

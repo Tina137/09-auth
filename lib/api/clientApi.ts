@@ -11,6 +11,7 @@ export type CheckSessionResponse = {
   success: boolean;
 };
 export type EditProps = {
+  email: string;
   username: string;
 };
 
