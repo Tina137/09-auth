@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { Modal } from "@/components/Modal/Modal";
-import { getSingleNote } from "@/lib/api";
+import { getSingleNote } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 
 import css from "../../../../components/NotePreview/NotePreview.module.css";
