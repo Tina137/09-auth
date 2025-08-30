@@ -38,7 +38,7 @@ async function postList(newList: InitialValuesProps) {
   return res.data;
 }
 
-async function deleteList(listId: string) {
+async function deleteNote(listId: string) {
   const res = await nextServer.delete<Note>(`/notes/${listId}`, {});
   return res.data;
 }
@@ -47,7 +47,7 @@ export const getSingleNote = async (id: string) => {
   return res.data;
 };
 
-export { postList, deleteList };
+export { postList, deleteNote };
 
 export const register = async (data: User) => {
   const res = await nextServer.post<User>("/auth/register", data);

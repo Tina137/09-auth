@@ -1,14 +1,14 @@
-"use client";
 import Image from "next/image";
 import css from "./Profile.module.css";
 import Link from "next/link";
-import { useAuthStore } from "@/lib/store/authStore";
 
-export default function Profile() {
-  const email = useAuthStore((state) => state.user?.email);
-  const username = useAuthStore((state) => state.user?.username);
-  const src = useAuthStore((state) => state.user?.avatar);
+interface ProfileProps {
+  email: string;
+  username: string;
+  src: string;
+}
 
+export default function Profile({ email, username, src }: ProfileProps) {
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>

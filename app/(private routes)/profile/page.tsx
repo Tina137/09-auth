@@ -1,5 +1,6 @@
 import Profile from "@/components/Profile/Profile";
 import { Metadata } from "next";
+import { getServerMe } from "@/lib/api/serverApi";
 
 export const metadata: Metadata = {
   title: "Your profile",
@@ -20,5 +21,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfilePage() {
-  return <Profile />;
+  const { email, username, avatar } = await getServerMe();
+  return <Profile email={email} username={username} src={avatar} />;
 }

@@ -14,6 +14,7 @@ export default function EditPage() {
   const router = useRouter();
   const email = useAuthStore((state) => state.user?.email);
   const src = useAuthStore((state) => state.user?.avatar);
+  const setUser = useAuthStore((state) => state.setUser);
   const handleSubmit = async (formData: FormData) => {
     try {
       if (email) {
@@ -23,6 +24,7 @@ export default function EditPage() {
         };
         const res = await editProfile(formValues);
         if (res) {
+          setUser(res);
           router.back();
         } else {
           setError("Invalid email or password");
